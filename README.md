@@ -4,6 +4,7 @@ An improved mesh combiner developed for Kitbashery. This contains an alternative
 
 <h1>License:</h1>
 <b>MIT License (see Licensing for more info)</b>
+<br>
 Created by Jorge Reyna Tamez @ https://www.fiverr.com/wkepro
 <br>
 Maintained by Kitbashery @ https://www.kitbashery.com
