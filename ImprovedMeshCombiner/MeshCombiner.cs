@@ -1,0 +1,96 @@
+﻿//
+// Mesh Combiner.
+//
+
+
+
+using System.Collections.Generic;
+using UnityEngine;
+
+
+
+namespace wkepro {
+
+
+
+   public static class MeshCombiner {
+
+
+
+      public static Mesh Combine(MeshFilter[] filters,bool weld,float gap) {
+
+         if(filters.Length==0) {
+            Debug.LogError("Mesh list is empty.");
+            return null;
+         }
+
+         // the root transform is used as base to translate local space to world space and back.
+         Transform      root      = filters[0].transform;
+
+         // Get extended data from each meh.
+         int            meshCount = filters.Length;
+         MeshExtended[] extended  = new MeshExtended[meshCount];
+         for(int m = 0;m<meshCount;m++) {
+            MeshFilter filter = filters[m];
+            extended[m]       = new MeshExtended();
+            // The Mesh Extender take care of translating vertex positions to world space and back.
+            // also calculates the required box size for the UVs
+            extended[m].Prepare(filter.sharedMesh,weld,root,filter.GetComponent<Transform>(),MeshExtended.SizeMethod.WorldScale);
+         }
+
+         // After all meshes have been welded we can procedd to Pack the UV's
+         List<UVPacker.Box> boxes            = UVPacker.Pack(extended,gap);
+
+         // Prepare a new mesh.
+         Mesh               combined         = new Mesh();
+         List<Vector3>      combinedVertices = new List<Vector3>();
+         List<Vector2>      combinedUVs      = new List<Vector2>();
+         List<Vector3>      combinedNormals  = new List<Vector3>();
+         List<int>          combinedTris     = new List<int>();
+         int                triOffset        = 0;
+
+         // once welded and with the UVs packed we can just add items to lists.
+         for(int meshIndex = 0;meshIndex<meshCount;meshIndex++) {
+ 
+            MeshExtended extmesh     = boxes[meshIndex].Extended;
+            Vector3[]    vertices    = extmesh.Vertices;
+            Vector2[]    uvs         = boxes[meshIndex].PackedUVs;
+            Vector3[]    normals     = extmesh.Normals;
+            int[]        triangles   = extmesh.Triangles;
+            int          vertexCount = vertices.Length;
+            int          triCount    = triangles.Length;
+
+            for(int v = 0;v<vertexCount;v++) {
+               combinedVertices.Add(vertices[v]);
+               combinedUVs.Add(uvs[v]);
+               combinedNormals.Add(normals[v]);
+            }
+
+            for(int t = 0;t<triCount;t++) {
+               combinedTris.Add(triangles[t]+triOffset);
+            }
+            triOffset = combinedVertices.Count;
+
+         }
+
+         // with all the UVs merged we can make the final adjustments.
+         UVPacker.AdjustSpace(combinedUVs);
+
+         // and finally create the new mesh.
+         combined.SetVertices(combinedVertices);
+         combined.SetUVs(0,combinedUVs);
+         combined.SetNormals(combinedNormals);
+         combined.SetTriangles(combinedTris,0);
+         combined.RecalculateTangents();
+
+         return combined;
+
+      }
+
+
+
+   }
+
+
+
+}
