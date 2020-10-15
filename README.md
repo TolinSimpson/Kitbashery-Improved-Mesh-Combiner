@@ -14,10 +14,9 @@ This project contains an imporved mesh combiner for use in Kitbashery it does th
 <ul>
  <li>Combines Meshes into a single mesh. </li>
  <li>(optionally) Merges vertices into vertex welds. </li>
- <li>Packs UVs so they don't overlap or stretch </li>
+ <li>Packs UVs so they don't overlap or stretch (includes padding & size by bounds options)</li>
   </ul>
-
-
+  
 This does <b>NOT</b> do the following (Kitbashery doesn't need these features):
 
 <ul>
@@ -33,8 +32,10 @@ This does <b>NOT</b> do the following (Kitbashery doesn't need these features):
 <br>
 2) Editor implementation can be found under <i>Tools>Kitbashery Combine Meshes></i>
 <br>
+<br>
 <b>Testing:</b>
 Kitbashery contains a modified version of https://github.com/Chaser324/unity-wireframe" (required dependancy) wireframe shader that has been modified to display the wireframe of UVs in worldspace grab it from here:
 https://github.com/kitbashery/Kitbashery/blob/Latest-Experimental/Assets/_Kitbashery/Shaders/UVWireframeShaded-Unlit.shader"
+<br>
 <br>
 <i>Note: Unity's default quad will always be a perfect UV square and represent UV bound in worldspace. Also note that all UVs are offset by 0.5f in X and Y direction when visualized.</i>
