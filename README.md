@@ -9,6 +9,8 @@ Created by Jorge Reyna Tamez @ https://www.fiverr.com/wkepro
 <br>
 Maintained by Kitbashery @ https://www.kitbashery.com
 <br>
+<i>The name Kitbashery and all associated branding and logos are are under copyright ©2020 Tolin Simpson all rights reserved.</i>
+<br>
 
 <h1>Features:</h1>
 This project contains an imporved mesh combiner for use in Kitbashery it does the following:
