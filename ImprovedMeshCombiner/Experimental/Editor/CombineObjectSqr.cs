@@ -31,14 +31,12 @@ Created for Kitbashery @ https://www.kitbashery.com
 using UnityEditor;
 using UnityEngine;
 
-namespace Kitbashery.MeshCombiner
+namespace Kitbashery.MeshCombiner.Experimental
 {
-    /// <summary>
-    /// Editor utility for testing mesh combines.
-    /// </summary>
-    public class CombineObjectMenu
+
+    public class CombineObjectMenuSqr
     {
-        [MenuItem("Tools/Kitbashery Combine Meshes")]
+        [MenuItem("Tools/Experimental/Kitbashery Combine Meshes (Square Grid Method)")]
         public static void CombineObjet()
         {
 
@@ -56,11 +54,12 @@ namespace Kitbashery.MeshCombiner
 
         static public void Combine(GameObject obj)
         {
+
             MeshFilter[] filters = obj.GetComponentsInChildren<MeshFilter>();
 
-            Mesh mesh = MeshCombiner.Combine(filters, true, 0.001f);
+            Mesh mesh = MeshCombinerSqr.Combine(filters, true);
 
-            AssetDatabase.CreateAsset(mesh, "Assets/Meshes/wa_" + obj.name + ".asset");
+            AssetDatabase.CreateAsset(mesh, "Assets/Meshes/wq_" + obj.name + ".asset");
             AssetDatabase.SaveAssets();
             Debug.Log("Mesh saved.");
 
@@ -70,6 +69,7 @@ namespace Kitbashery.MeshCombiner
             //filter.sharedMesh = mesh;
             //OBJExport.Export(export,"Assets/Meshes");
             //GameObject.DestroyImmediate(export);
+
 
             Vector2[] uv = mesh.uv;
             float xMin = Mathf.Infinity;
@@ -96,7 +96,7 @@ namespace Kitbashery.MeshCombiner
                     yMax = v2.y;
                 }
             }
-            //Debug.Log("x1=" + xMin + ", x2=" + xMax + ", y1=" + yMin + ",y2=" + yMax); //Debug bounds.
+            Debug.Log("x1=" + xMin + ", x2=" + xMax + ", y1=" + yMin + ",y2=" + yMax);
         }
     }
 }
