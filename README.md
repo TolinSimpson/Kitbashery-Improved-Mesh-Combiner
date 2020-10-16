@@ -13,8 +13,8 @@ Maintained by Kitbashery @ https://www.kitbashery.com
 <br>
 
 <h1>Features:</h1>
-This project contains an imporved mesh combiner for use in Kitbashery it does the following:
-
+This project contains an improved mesh combiner for use in Kitbashery it does the following:
+<br>
 <ul>
  <li>Combines Meshes into a single mesh. </li>
  <li>(optionally) Merges vertices into vertex welds. </li>
