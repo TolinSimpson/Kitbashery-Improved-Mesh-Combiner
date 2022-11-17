@@ -1,3 +1,6 @@
+# Notice:
+This repo was for the UV tools created for the Kitbashery standalone application; a project which was canceled. This repo uses the name Kitbashery but is not offcially part of the Kitbashery ecosystem and does not meet the quality standards of other Kitbashery assets. If you want this and more UV tools that I have since developed give me a shout @ https://github.com/Kitbashery and maybe I'll clean this up as a modern Unity package.
+
 # Kitbashery-Improved-Mesh-Combiner
 An improved mesh combiner developed for Kitbashery. This contains an alternative implementation of Unity's built-in mesh combiner.
 <br>
@@ -9,7 +12,7 @@ Created by Jorge Reyna Tamez @ https://www.fiverr.com/wkepro
 <br>
 Maintained by Kitbashery @ https://www.kitbashery.com
 <br>
-<i>The name Kitbashery and all associated branding and logos are are under copyright ©2020 Tolin Simpson all rights reserved.</i>
+<i>The name Kitbashery and all associated branding and logos are are under copyright ©2020-22 Tolin Simpson all rights reserved.</i>
 <br>
 
 <h1>Features:</h1>
